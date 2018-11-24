@@ -15,7 +15,7 @@ build-curl:
     - api
   variables:
     VARIANT_TAG: "curl"
-    VARIANT_TAG_WITH_VERSION: "curl-v1.0.0a"
+    VARIANT_TAG_WITH_VERSION: "curl-v1.0.0"
     VARIANT_BUILD_DIR: "variants/alpine/curl"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
@@ -61,7 +61,7 @@ build-git:
     - api
   variables:
     VARIANT_TAG: "git"
-    VARIANT_TAG_WITH_VERSION: "git-v1.0.0a"
+    VARIANT_TAG_WITH_VERSION: "git-v1.0.0"
     VARIANT_BUILD_DIR: "variants/alpine/git"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
@@ -107,7 +107,7 @@ build-curl-git:
     - api
   variables:
     VARIANT_TAG: "curl-git"
-    VARIANT_TAG_WITH_VERSION: "curl-git-v1.0.0a"
+    VARIANT_TAG_WITH_VERSION: "curl-git-v1.0.0"
     VARIANT_BUILD_DIR: "variants/alpine/curl-git"
   before_script:
     - date '+%Y-%m-%d %H:%M:%S %z'
