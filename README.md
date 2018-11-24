@@ -1,8 +1,9 @@
-# alpine-cron
+# alpine
 
-Packages included: curl, wget
+Packages included: wget
 
 | Tags |
 |:-------:| 
 | `:curl` | 
-| `:git` |
+| `:git` | 
+| `:curl-git` |

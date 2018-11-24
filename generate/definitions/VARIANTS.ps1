@@ -9,6 +9,10 @@ $VARIANTS = @(
         tag = 'git'
         distro = 'alpine'
     }
+    @{
+        tag = 'curl-git'
+        distro = 'alpine'
+    }
 )
 
 # Docker image variants' definitions (shared)
