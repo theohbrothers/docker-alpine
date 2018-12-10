@@ -6,4 +6,6 @@ Packages included: wget
 |:-------:| 
 | `:curl` | 
 | `:git` | 
-| `:curl-git` |
+| `:ssh` | 
+| `:curl-git` | 
+| `:curl-git-ssh` |

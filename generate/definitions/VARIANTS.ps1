@@ -1,5 +1,5 @@
 # Docker image variants' definitions
-$VARIANTS_VERSION = "1.0.0"
+$VARIANTS_VERSION = "1.0.1a"
 $VARIANTS = @(
     @{
         tag = 'curl'
@@ -10,7 +10,15 @@ $VARIANTS = @(
         distro = 'alpine'
     }
     @{
+        tag = 'ssh'
+        distro = 'alpine'
+    }
+    @{
         tag = 'curl-git'
+        distro = 'alpine'
+    }
+    @{
+        tag = 'curl-git-ssh'
         distro = 'alpine'
     }
 )
