@@ -1,6 +1,4 @@
-# alpine
-
-Packages included: wget
+# docker-alpine
 
 | Tags |
 |:-------:| 
