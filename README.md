@@ -1,7 +1,5 @@
 # docker-alpine
 
-Packages included: wget
-
 | Tags |
 |:-------:| 
 | `:curl` | 
