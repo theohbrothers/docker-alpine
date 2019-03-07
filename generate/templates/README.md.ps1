@@ -1,5 +1,5 @@
 @"
-# alpine
+# docker-alpine
 
 Packages included: `wget`
 
