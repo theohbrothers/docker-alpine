@@ -23,7 +23,6 @@ $( $VARIANTS | % {
       VARIANT_TAG: $( $_['tag'] )
       VARIANT_TAG_WITH_VERSION: $( $_['tag'] )-`${{ github.ref }}
       VARIANT_BUILD_DIR: $( $_['build_dir_rel'] )
-      CI_PROJECT_PATH: `${{ github.repository }}
 "@
 @'
 
@@ -53,7 +52,10 @@ $( $VARIANTS | % {
         set -e
 
         # Get 'project-name' from 'namespace/project-name'
-        CI_PROJECT_NAME=$( echo "${CI_PROJECT_PATH}" | cut -d '/' -f 2 )
+        CI_PROJECT_NAME=$( echo "${GITHUB_REPOSITORY}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get 'ref-name' from 'refs/heads/ref-name'
+        VARIANT_TAG_WITH_VERSION=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
 
         docker build \
           -t "${DOCKERHUB_REGISTRY_USER}/${CI_PROJECT_NAME}:${VARIANT_TAG}" \
