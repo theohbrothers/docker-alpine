@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: curl
-      VARIANT_TAG_WITH_VERSION: curl-${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: curl-${GITHUB_REF}
       VARIANT_BUILD_DIR: variants/alpine/curl
     steps:
     - uses: actions/checkout@v1
@@ -63,7 +63,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: git
-      VARIANT_TAG_WITH_VERSION: git-${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: git-${GITHUB_REF}
       VARIANT_BUILD_DIR: variants/alpine/git
     steps:
     - uses: actions/checkout@v1
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: ssh
-      VARIANT_TAG_WITH_VERSION: ssh-${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: ssh-${GITHUB_REF}
       VARIANT_BUILD_DIR: variants/alpine/ssh
     steps:
     - uses: actions/checkout@v1
@@ -159,7 +159,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: curl-git
-      VARIANT_TAG_WITH_VERSION: curl-git-${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: curl-git-${GITHUB_REF}
       VARIANT_BUILD_DIR: variants/alpine/curl-git
     steps:
     - uses: actions/checkout@v1
@@ -207,7 +207,7 @@ jobs:
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: curl-git-ssh
-      VARIANT_TAG_WITH_VERSION: curl-git-ssh-${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: curl-git-ssh-${GITHUB_REF}
       VARIANT_BUILD_DIR: variants/alpine/curl-git-ssh
     steps:
     - uses: actions/checkout@v1

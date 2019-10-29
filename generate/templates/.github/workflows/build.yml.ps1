@@ -21,7 +21,7 @@ $( $VARIANTS | % {
     runs-on: ubuntu-18.04
     env:
       VARIANT_TAG: $( $_['tag'] )
-      VARIANT_TAG_WITH_VERSION: $( $_['tag'] )-`${{ github.ref }}
+      # VARIANT_TAG_WITH_VERSION: $( $_['tag'] )-`${GITHUB_REF}
       VARIANT_BUILD_DIR: $( $_['build_dir_rel'] )
 "@
 @'
