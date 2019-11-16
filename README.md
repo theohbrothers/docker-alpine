@@ -11,4 +11,5 @@
 | `:git` | 
 | `:ssh` | 
 | `:curl-git` | 
-| `:curl-git-ssh` |
+| `:curl-git-ssh` | 
+| `:mysqlclient-openssl` |

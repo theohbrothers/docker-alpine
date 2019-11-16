@@ -21,6 +21,10 @@ $VARIANTS = @(
         tag = 'curl-git-ssh'
         distro = 'alpine'
     }
+    @{
+        tag = 'mysqlclient-openssl'
+        distro = 'alpine'
+    }
 )
 
 # Docker image variants' definitions (shared)
