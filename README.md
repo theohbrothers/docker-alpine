@@ -9,7 +9,9 @@
 |:-------:| 
 | `:curl` | 
 | `:git` | 
+| `:jq` | 
 | `:ssh` | 
 | `:curl-git` | 
+| `:curl-jq` | 
 | `:curl-git-ssh` | 
 | `:mysqlclient-openssl` |

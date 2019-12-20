@@ -9,11 +9,19 @@ $VARIANTS = @(
         distro = 'alpine'
     }
     @{
+        tag = 'jq'
+        distro = 'alpine'
+    }
+    @{
         tag = 'ssh'
         distro = 'alpine'
     }
     @{
         tag = 'curl-git'
+        distro = 'alpine'
+    }
+    @{
+        tag = 'curl-jq'
         distro = 'alpine'
     }
     @{
