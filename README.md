@@ -7,11 +7,11 @@
 
 | Tags |
 |:-------:| 
-| `:curl` | 
-| `:git` | 
-| `:jq` | 
-| `:ssh` | 
-| `:curl-git` | 
-| `:curl-jq` | 
-| `:curl-git-ssh` | 
-| `:mysqlclient-openssl` |
+| `:curl-alpine-3.8` | 
+| `:git-alpine-3.8` | 
+| `:jq-alpine-3.8` | 
+| `:ssh-alpine-3.8` | 
+| `:curl-git-alpine-3.8` | 
+| `:curl-jq-alpine-3.8` | 
+| `:curl-git-ssh-alpine-3.8` | 
+| `:mysqlclient-openssl-alpine-3.8` |

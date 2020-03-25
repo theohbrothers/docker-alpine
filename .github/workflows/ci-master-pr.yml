@@ -9,12 +9,12 @@ on:
     - master
 
 jobs:
-  build-curl:
+  build-curl-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: curl
-      # VARIANT_TAG_WITH_REF: curl-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/curl
+      VARIANT_TAG: curl-alpine-3.8
+      # VARIANT_TAG_WITH_REF: curl-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/curl-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -60,12 +60,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-git:
+  build-git-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: git
-      # VARIANT_TAG_WITH_REF: git-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/git
+      VARIANT_TAG: git-alpine-3.8
+      # VARIANT_TAG_WITH_REF: git-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/git-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -111,12 +111,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-jq:
+  build-jq-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: jq
-      # VARIANT_TAG_WITH_REF: jq-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/jq
+      VARIANT_TAG: jq-alpine-3.8
+      # VARIANT_TAG_WITH_REF: jq-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/jq-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -162,12 +162,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-ssh:
+  build-ssh-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: ssh
-      # VARIANT_TAG_WITH_REF: ssh-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/ssh
+      VARIANT_TAG: ssh-alpine-3.8
+      # VARIANT_TAG_WITH_REF: ssh-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/ssh-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -213,12 +213,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-curl-git:
+  build-curl-git-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: curl-git
-      # VARIANT_TAG_WITH_REF: curl-git-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/curl-git
+      VARIANT_TAG: curl-git-alpine-3.8
+      # VARIANT_TAG_WITH_REF: curl-git-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/curl-git-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -264,12 +264,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-curl-jq:
+  build-curl-jq-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: curl-jq
-      # VARIANT_TAG_WITH_REF: curl-jq-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/curl-jq
+      VARIANT_TAG: curl-jq-alpine-3.8
+      # VARIANT_TAG_WITH_REF: curl-jq-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/curl-jq-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -315,12 +315,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-curl-git-ssh:
+  build-curl-git-ssh-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: curl-git-ssh
-      # VARIANT_TAG_WITH_REF: curl-git-ssh-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/curl-git-ssh
+      VARIANT_TAG: curl-git-ssh-alpine-3.8
+      # VARIANT_TAG_WITH_REF: curl-git-ssh-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/curl-git-ssh-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
@@ -366,12 +366,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-mysqlclient-openssl:
+  build-mysqlclient-openssl-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: mysqlclient-openssl
-      # VARIANT_TAG_WITH_REF: mysqlclient-openssl-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/alpine/mysqlclient-openssl
+      VARIANT_TAG: mysqlclient-openssl-alpine-3.8
+      # VARIANT_TAG_WITH_REF: mysqlclient-openssl-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/mysqlclient-openssl-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
