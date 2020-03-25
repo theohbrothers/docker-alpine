@@ -11,7 +11,7 @@ $local:VARIANTS_MATRIX = @(
             @{ components = @( 'curl', 'git' ) }
             @{ components = @( 'curl', 'jq' ) }
             @{ components = @( 'curl', 'git', 'jq' ) }
-            @{ components = @( 'curl', 'git', 'ssh' ) }
+            @{ components = @( 'curl', 'git', 'jq', 'ssh' ) }
             @{ components = @( 'mysqlclient', 'openssl' ) }
         )
     }

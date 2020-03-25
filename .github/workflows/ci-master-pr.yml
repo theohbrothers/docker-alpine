@@ -366,12 +366,12 @@ jobs:
     - name: Clean-up
       run: docker logout
       if: always()
-  build-curl-git-ssh-alpine-3-8:
+  build-curl-git-jq-ssh-alpine-3-8:
     runs-on: ubuntu-18.04
     env:
-      VARIANT_TAG: curl-git-ssh-alpine-3.8
-      # VARIANT_TAG_WITH_REF: curl-git-ssh-alpine-3.8-${GITHUB_REF}
-      VARIANT_BUILD_DIR: variants/curl-git-ssh-alpine-3.8
+      VARIANT_TAG: curl-git-jq-ssh-alpine-3.8
+      # VARIANT_TAG_WITH_REF: curl-git-jq-ssh-alpine-3.8-${GITHUB_REF}
+      VARIANT_BUILD_DIR: variants/curl-git-jq-ssh-alpine-3.8
     steps:
     - uses: actions/checkout@v1
     - name: Display system info (linux)
