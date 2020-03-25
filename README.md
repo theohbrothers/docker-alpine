@@ -15,5 +15,6 @@ Dockerized alpine with useful tools.
 | `:ssh-alpine-3.8` | 
 | `:curl-git-alpine-3.8` | 
 | `:curl-jq-alpine-3.8` | 
+| `:curl-git-jq-alpine-3.8` | 
 | `:curl-git-ssh-alpine-3.8` | 
 | `:mysqlclient-openssl-alpine-3.8` |
