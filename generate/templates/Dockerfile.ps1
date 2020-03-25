@@ -34,7 +34,7 @@ RUN apk add --no-cache jq
 
         'mysqlclient' {
         @"
-RUN apk add --no-cache mysqlclient
+RUN apk add --no-cache mysql-client
 
 
 "@
