@@ -6,7 +6,7 @@ RUN apk add --no-cache curl
 
 RUN apk add --no-cache git
 
-RUN apk add --no-cache ssh
+RUN apk add --no-cache openssh
 
 
 
