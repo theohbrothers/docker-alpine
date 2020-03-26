@@ -10,7 +10,8 @@ $local:VARIANTS_MATRIX = @(
             @{ components = @( 'ssh' ) }
             @{ components = @( 'curl', 'git' ) }
             @{ components = @( 'curl', 'jq' ) }
-            @{ components = @( 'curl', 'git', 'ssh' ) }
+            @{ components = @( 'curl', 'git', 'jq' ) }
+            @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = $true }
             @{ components = @( 'mysqlclient', 'openssl' ) }
         )
     }
