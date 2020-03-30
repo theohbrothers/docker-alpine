@@ -9,8 +9,20 @@
 Dockerized alpine with useful tools.
 
 | Tags |
-|:-------:| $( $VARIANTS | % {
-"`n| ``:$( $_['tag'] )`` |"
-})
+|:-------:|
+$(
+($VARIANTS | % {
+    if ( $_['tag_as_latest'] ) {
+@"
+| ``:$( $_['tag'] )``, ``:latest`` |
 
+"@
+    }else {
+@"
+| ``:$( $_['tag'] )`` |
+
+"@
+    }
+}) -join ''
+)
 "@
