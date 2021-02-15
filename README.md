@@ -9,6 +9,15 @@ Dockerized alpine with useful tools.
 
 | Tags |
 |:-------:|
+| `:3.11-curl` |
+| `:3.11-git` |
+| `:3.11-jq` |
+| `:3.11-ssh` |
+| `:3.11-curl-git` |
+| `:3.11-curl-jq` |
+| `:3.11-curl-git-jq` |
+| `:3.11-curl-git-jq-ssh` |
+| `:3.11-mysqlclient-openssl` |
 | `:3.10-curl` |
 | `:3.10-git` |
 | `:3.10-jq` |
