@@ -9,12 +9,12 @@ Dockerized alpine with useful tools.
 
 | Tags |
 |:-------:|
-| `:curl-alpine-3.8` |
-| `:git-alpine-3.8` |
-| `:jq-alpine-3.8` |
-| `:ssh-alpine-3.8` |
-| `:curl-git-alpine-3.8` |
-| `:curl-jq-alpine-3.8` |
-| `:curl-git-jq-alpine-3.8` |
-| `:curl-git-jq-ssh-alpine-3.8`, `:latest` |
-| `:mysqlclient-openssl-alpine-3.8` |
+| `:3.8-curl` |
+| `:3.8-git` |
+| `:3.8-jq` |
+| `:3.8-ssh` |
+| `:3.8-curl-git` |
+| `:3.8-curl-jq` |
+| `:3.8-curl-git-jq` |
+| `:3.8-curl-git-jq-ssh`, `:latest` |
+| `:3.8-mysqlclient-openssl` |

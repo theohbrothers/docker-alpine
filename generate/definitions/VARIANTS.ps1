@@ -32,11 +32,10 @@ $VARIANTS = @(
                     distro = $variant['distro']
                     distro_version = $variant['distro_version']
                 }
-                # Docker image tag. E.g. 'v2.3.0.0-alpine-3.6'
+                # Docker image tag. E.g. '3.8-curl'
                 tag = @(
-                        $subVariant['components'] | ? { $_ }
-                        $variant['distro']
                         $variant['distro_version']
+                        $subVariant['components'] | ? { $_ }
                 ) -join '-'
                 tag_as_latest = if ( $subVariant.Contains('tag_as_latest') ) {
                                     $subVariant['tag_as_latest']
