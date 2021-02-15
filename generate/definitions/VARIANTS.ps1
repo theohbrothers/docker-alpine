@@ -1,19 +1,28 @@
+$local:VARIANTS_DISTRO_VERSIONS = @(
+    '3.12'
+    '3.11'
+    '3.10'
+    '3.9'
+    '3.8'
+)
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
-    @{
-        distro = 'alpine'
-        distro_version = '3.8'
-        subvariants = @(
-            @{ components = @( 'curl' ) }
-            @{ components = @( 'git' ) }
-            @{ components = @( 'jq' ) }
-            @{ components = @( 'ssh' ) }
-            @{ components = @( 'curl', 'git' ) }
-            @{ components = @( 'curl', 'jq' ) }
-            @{ components = @( 'curl', 'git', 'jq' ) }
-            @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = $true }
-            @{ components = @( 'mysqlclient', 'openssl' ) }
-        )
+    foreach ($v in $local:VARIANTS_DISTRO_VERSIONS) {
+        @{
+            distro = 'alpine'
+            distro_version = $v
+            subvariants = @(
+                @{ components = @( 'curl' ) }
+                @{ components = @( 'git' ) }
+                @{ components = @( 'jq' ) }
+                @{ components = @( 'ssh' ) }
+                @{ components = @( 'curl', 'git' ) }
+                @{ components = @( 'curl', 'jq' ) }
+                @{ components = @( 'curl', 'git', 'jq' ) }
+                @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq '3.12') { $true } else { $false } }
+                @{ components = @( 'mysqlclient', 'openssl' ) }
+            )
+        }
     }
 )
 
@@ -27,11 +36,10 @@ $VARIANTS = @(
                     distro = $variant['distro']
                     distro_version = $variant['distro_version']
                 }
-                # Docker image tag. E.g. 'v2.3.0.0-alpine-3.6'
+                # Docker image tag. E.g. '3.8-curl'
                 tag = @(
-                        $subVariant['components'] | ? { $_ }
-                        $variant['distro']
                         $variant['distro_version']
+                        $subVariant['components'] | ? { $_ }
                 ) -join '-'
                 tag_as_latest = if ( $subVariant.Contains('tag_as_latest') ) {
                                     $subVariant['tag_as_latest']
