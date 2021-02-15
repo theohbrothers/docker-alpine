@@ -19,7 +19,7 @@ $local:VARIANTS_MATRIX = @(
                 @{ components = @( 'curl', 'git' ) }
                 @{ components = @( 'curl', 'jq' ) }
                 @{ components = @( 'curl', 'git', 'jq' ) }
-                @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq '3.8') { $true } else { $false } }
+                @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq '3.12') { $true } else { $false } }
                 @{ components = @( 'mysqlclient', 'openssl' ) }
             )
         }

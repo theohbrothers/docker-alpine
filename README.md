@@ -16,7 +16,7 @@ Dockerized alpine with useful tools.
 | `:3.12-curl-git` |
 | `:3.12-curl-jq` |
 | `:3.12-curl-git-jq` |
-| `:3.12-curl-git-jq-ssh` |
+| `:3.12-curl-git-jq-ssh`, `:latest` |
 | `:3.12-mysqlclient-openssl` |
 | `:3.11-curl` |
 | `:3.11-git` |
@@ -52,5 +52,5 @@ Dockerized alpine with useful tools.
 | `:3.8-curl-git` |
 | `:3.8-curl-jq` |
 | `:3.8-curl-git-jq` |
-| `:3.8-curl-git-jq-ssh`, `:latest` |
+| `:3.8-curl-git-jq-ssh` |
 | `:3.8-mysqlclient-openssl` |
