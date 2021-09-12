@@ -1,6 +1,10 @@
 @"
-$(
-($VARIANT['_metadata']['components'] | % {
+FROM $( $VARIANT['_metadata']['distro'] ):$( $VARIANT['_metadata']['distro_version'] )
+
+
+"@
+
+$VARIANT['_metadata']['components'] | % {
     $component = $_
 
     switch( $component ) {
@@ -58,6 +62,4 @@ RUN apk add --no-cache openssh
             throw "No such component: $component"
         }
     }
-}) -join ''
-)
-"@
+}
