@@ -12,13 +12,6 @@ $local:VARIANTS_MATRIX = @(
             distro = 'alpine'
             distro_version = $v
             subvariants = @(
-                @{ components = @( 'curl' ) }
-                @{ components = @( 'git' ) }
-                @{ components = @( 'jq' ) }
-                @{ components = @( 'ssh' ) }
-                @{ components = @( 'curl', 'git' ) }
-                @{ components = @( 'curl', 'jq' ) }
-                @{ components = @( 'curl', 'git', 'jq' ) }
                 @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
                 @{ components = @( 'mysqlclient', 'openssl' ) }
             )
@@ -57,8 +50,8 @@ $VARIANTS_SHARED = @{
         templates = @{
             'Dockerfile' = @{
                 common = $true
-                includeHeader = $true
-                includeFooter = $true
+                includeHeader = $false
+                includeFooter = $false
                 passes = @(
                     @{
                         variables = @{}
