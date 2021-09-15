@@ -25,9 +25,16 @@ $VARIANTS = @(
             @{
                 # Metadata object
                 _metadata = @{
-                    components = $subVariant['components']
                     distro = $variant['distro']
                     distro_version = $variant['distro_version']
+                    platforms = & {
+                        if ($variant -in @( '3.3', '3.4', '3.5' ) ) {
+                            'linux/amd64'
+                        }else {
+                            'linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x'
+                        }
+                    }
+                    components = $subVariant['components']
                 }
                 # Docker image tag. E.g. '3.8-curl'
                 tag = @(
@@ -61,6 +68,3 @@ $VARIANTS_SHARED = @{
         }
     }
 }
-
-# Send definitions down the pipeline
-$VARIANTS
