@@ -61,6 +61,3 @@ $VARIANTS_SHARED = @{
         }
     }
 }
-
-# Send definitions down the pipeline
-$VARIANTS
