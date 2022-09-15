@@ -23,7 +23,6 @@ RUN apk add --no-cache git
 
 
 "@
-
         }
 
         'iptables' {
@@ -32,7 +31,6 @@ RUN apk add --no-cache iptables
 
 
 "@
-
         }
 
         'jq' {
@@ -54,6 +52,14 @@ RUN apk add --no-cache mysql-client
         'openssl' {
         @"
 RUN apk add --no-cache openssl
+
+
+"@
+        }
+
+        'rsync' {
+        @"
+RUN apk add --no-cache rsync
 
 
 "@
