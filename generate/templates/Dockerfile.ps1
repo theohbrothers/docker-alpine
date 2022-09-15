@@ -26,6 +26,15 @@ RUN apk add --no-cache git
 
         }
 
+        'iptables' {
+        @"
+RUN apk add --no-cache iptables
+
+
+"@
+
+        }
+
         'jq' {
         @"
 RUN apk add --no-cache jq
