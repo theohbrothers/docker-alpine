@@ -15,6 +15,7 @@ $local:VARIANTS_MATRIX = @(
                 @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
                 @{ components = @( 'curl', 'mysqlclient', 'openssl' ) }
                 @{ components = @( 'iptables' ) }
+                @{ components = @( 'rsync' ) }
             )
         }
     }
