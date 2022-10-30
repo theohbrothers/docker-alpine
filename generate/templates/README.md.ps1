@@ -43,5 +43,5 @@ Install-Module -Name Generate-DockerImageVariants -Repository PSGallery -Scope C
 # Generate the variants
 Generate-DockerImageVariants .
 ```
-'@
 
+'@
