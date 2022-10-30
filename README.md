@@ -30,3 +30,17 @@ Dockerized alpine with useful tools.
 | `:3.8-curl-mysqlclient-openssl` | [View](variants/3.8-curl-mysqlclient-openssl ) |
 | `:3.8-iptables` | [View](variants/3.8-iptables ) |
 | `:3.8-rsync` | [View](variants/3.8-rsync ) |
+
+## Development
+
+Requires Windows `powershell` or [`pwsh`](https://github.com/PowerShell/PowerShell).
+
+```powershell
+# Install Generate-DockerImageVariants module: https://github.com/theohbrothers/Generate-DockerImageVariants
+Install-Module -Name Generate-DockerImageVariants -Repository PSGallery -Scope CurrentUser -Force -Verbose
+
+# Edit ./generate templates
+
+# Generate the variants
+Generate-DockerImageVariants .
+```
