@@ -2783,7 +2783,7 @@ jobs:
 
   update-dockerhub-description:
     needs: [build-3-12-curl-git-jq-ssh, build-3-12-curl-mysqlclient-openssl, build-3-12-iptables, build-3-12-rsync, build-3-11-curl-git-jq-ssh, build-3-11-curl-mysqlclient-openssl, build-3-11-iptables, build-3-11-rsync, build-3-10-curl-git-jq-ssh, build-3-10-curl-mysqlclient-openssl, build-3-10-iptables, build-3-10-rsync, build-3-9-curl-git-jq-ssh, build-3-9-curl-mysqlclient-openssl, build-3-9-iptables, build-3-9-rsync, build-3-8-curl-git-jq-ssh, build-3-8-curl-mysqlclient-openssl, build-3-8-iptables, build-3-8-rsync]
-    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
