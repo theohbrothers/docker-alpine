@@ -10,7 +10,11 @@ Dockerized alpine with useful tools.
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
-| `:3.12-curl-git-jq-ssh`, `:latest` | [View](variants/3.12-curl-git-jq-ssh) |
+| `:3.15-curl-git-jq-ssh`, `:latest` | [View](variants/3.15-curl-git-jq-ssh) |
+| `:3.15-curl-mysqlclient-openssl` | [View](variants/3.15-curl-mysqlclient-openssl) |
+| `:3.15-iptables` | [View](variants/3.15-iptables) |
+| `:3.15-rsync` | [View](variants/3.15-rsync) |
+| `:3.12-curl-git-jq-ssh` | [View](variants/3.12-curl-git-jq-ssh) |
 | `:3.12-curl-mysqlclient-openssl` | [View](variants/3.12-curl-mysqlclient-openssl) |
 | `:3.12-iptables` | [View](variants/3.12-iptables) |
 | `:3.12-rsync` | [View](variants/3.12-rsync) |
