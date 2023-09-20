@@ -22,10 +22,6 @@ Dockerized alpine with useful tools.
 | `:3.12-curl-mysqlclient-openssl` | [View](variants/3.12-curl-mysqlclient-openssl) |
 | `:3.12-iptables` | [View](variants/3.12-iptables) |
 | `:3.12-rsync` | [View](variants/3.12-rsync) |
-| `:3.8-curl-git-jq-ssh` | [View](variants/3.8-curl-git-jq-ssh) |
-| `:3.8-curl-mysqlclient-openssl` | [View](variants/3.8-curl-mysqlclient-openssl) |
-| `:3.8-iptables` | [View](variants/3.8-iptables) |
-| `:3.8-rsync` | [View](variants/3.8-rsync) |
 
 ## Development
 
