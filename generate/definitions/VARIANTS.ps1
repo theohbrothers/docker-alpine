@@ -25,7 +25,6 @@ $VARIANTS = @(
             @{
                 # Metadata object
                 _metadata = @{
-                    package_version = $variant['distro_version']
                     distro = $variant['distro']
                     distro_version = $variant['distro_version']
                     platforms = & {
@@ -36,6 +35,7 @@ $VARIANTS = @(
                         }
                     }
                     components = $subVariant['components']
+                    job_group_key = $variant['distro_version']
                 }
                 # Docker image tag. E.g. '3.8-curl'
                 tag = @(
