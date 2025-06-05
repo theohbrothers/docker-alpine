@@ -1,5 +1,7 @@
 FROM alpine:3.15
 
+RUN apk add --no-cache ca-certificates
+
 # Install pingme
 RUN set -eux; \
     PINGME_VERSION=v0.2.6; \
