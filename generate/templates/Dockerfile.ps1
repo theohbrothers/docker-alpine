@@ -57,6 +57,22 @@ RUN apk add --no-cache openssl
 "@
         }
 
+        'pingme' {
+            $PINGME_VERSION = "v$( $global:VERSIONS.pingme.versions[0] )"
+            Generate-DownloadBinary @{
+                binary = 'pingme'
+                version = $PINGME_VERSION
+                checksumsUrl = "https://github.com/kha7iq/pingme/releases/download/$PINGME_VERSION/pingme_checksums.txt"
+                archiveformat = '.tar.gz'
+                archivefiles = @(
+                    'pingme'
+                    'LICENSE.md'
+                )
+                architectures = $VARIANT['_metadata']['platforms']
+                testCommand = 'pingme --version'
+            }
+        }
+
         'rsync' {
         @"
 RUN apk add --no-cache rsync

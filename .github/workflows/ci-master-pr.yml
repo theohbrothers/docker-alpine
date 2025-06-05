@@ -214,6 +214,73 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
+      id: prep-3-20-pingme
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.20-pingme"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.20-pingme - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.20-pingme - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.20-pingme - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
       id: prep-3-20-iptables
       run: |
         set -e
@@ -529,6 +596,73 @@ jobs:
           ${{ github.repository }}:${{ steps.prep-3-17-curl-mysqlclient-openssl.outputs.VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-17-curl-mysqlclient-openssl.outputs.REF_VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-17-curl-mysqlclient-openssl.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-17-pingme
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.17-pingme"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.17-pingme - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.17-pingme - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.17-pingme - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-pingme.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
@@ -854,6 +988,73 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
+      id: prep-3-15-pingme
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.15-pingme"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.15-pingme - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.15-pingme - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.15-pingme - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
       id: prep-3-15-iptables
       run: |
         set -e
@@ -1169,6 +1370,73 @@ jobs:
           ${{ github.repository }}:${{ steps.prep-3-12-curl-mysqlclient-openssl.outputs.VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-12-curl-mysqlclient-openssl.outputs.REF_VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-12-curl-mysqlclient-openssl.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-12-pingme
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.12-pingme"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.12-pingme - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.12-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.12-pingme - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.12-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.12-pingme - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.12-pingme
+        platforms: linux/386,linux/amd64,linux/arm/v7,linux/arm64
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-12-pingme.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
