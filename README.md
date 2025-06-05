@@ -12,18 +12,22 @@ Dockerized alpine with useful tools.
 |:-------:|:---------:|
 | `:3.20-curl-git-jq-ssh`, `:latest` | [View](variants/3.20-curl-git-jq-ssh) |
 | `:3.20-curl-mysqlclient-openssl` | [View](variants/3.20-curl-mysqlclient-openssl) |
+| `:3.20-pingme` | [View](variants/3.20-pingme) |
 | `:3.20-iptables` | [View](variants/3.20-iptables) |
 | `:3.20-rsync` | [View](variants/3.20-rsync) |
 | `:3.17-curl-git-jq-ssh` | [View](variants/3.17-curl-git-jq-ssh) |
 | `:3.17-curl-mysqlclient-openssl` | [View](variants/3.17-curl-mysqlclient-openssl) |
+| `:3.17-pingme` | [View](variants/3.17-pingme) |
 | `:3.17-iptables` | [View](variants/3.17-iptables) |
 | `:3.17-rsync` | [View](variants/3.17-rsync) |
 | `:3.15-curl-git-jq-ssh` | [View](variants/3.15-curl-git-jq-ssh) |
 | `:3.15-curl-mysqlclient-openssl` | [View](variants/3.15-curl-mysqlclient-openssl) |
+| `:3.15-pingme` | [View](variants/3.15-pingme) |
 | `:3.15-iptables` | [View](variants/3.15-iptables) |
 | `:3.15-rsync` | [View](variants/3.15-rsync) |
 | `:3.12-curl-git-jq-ssh` | [View](variants/3.12-curl-git-jq-ssh) |
 | `:3.12-curl-mysqlclient-openssl` | [View](variants/3.12-curl-mysqlclient-openssl) |
+| `:3.12-pingme` | [View](variants/3.12-pingme) |
 | `:3.12-iptables` | [View](variants/3.12-iptables) |
 | `:3.12-rsync` | [View](variants/3.12-rsync) |
 
