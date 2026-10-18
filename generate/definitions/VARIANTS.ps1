@@ -2,6 +2,7 @@ $global:VERSIONS = @( Get-Content $PSScriptRoot/versions.json -Encoding utf8 -ra
 
 # Docker image variants' definitions
 $local:VARIANTS_DISTRO_VERSIONS = @(
+    '3.24'
     '3.20'
     '3.17'
     '3.15'
