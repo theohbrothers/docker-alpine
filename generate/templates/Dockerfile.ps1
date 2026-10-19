@@ -10,6 +10,23 @@ $VARIANT['_metadata']['components'] | % {
     $component = $_
 
     switch( $component ) {
+        'apprise' {
+            if ( [version]$VARIANT['_metadata']['distro_version'] -ge [version]'3.21' ) {
+                 @"
+RUN apk add --no-cache apprise
+
+
+"@
+            }else {
+        @"
+RUN set -eux; \
+    apk add --repository=https://dl-cdn.alpinelinux.org/alpine/v3.21/community --no-cache apprise; \
+    apprise --version
+
+
+"@
+            }
+        }
 
         'curl' {
         @"
