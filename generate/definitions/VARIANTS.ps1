@@ -16,11 +16,17 @@ $local:VARIANTS_MATRIX = @(
             distro_version = $v
             subvariants = @(
                 @{ components = @( 'curl', 'git', 'jq', 'ssh' ); tag_as_latest = if ($v -eq $local:VARIANTS_DISTRO_VERSIONS[0]) { $true } else { $false } }
+                if ( [version]$v -ge [version]'3.20' ) {
+                    @{ components = @( 'apprise', 'curl', 'git', 'jq', 'ssh' ) }
+                }
                 @{ components = @( 'curl', 'mysqlclient', 'openssl' ) }
+                if ( [version]$v -ge [version]'3.20' ) {
+                    @{ components = @( 'apprise', 'curl', 'mysqlclient', 'openssl' ) }
+                }
                 @{ components = @( 'pingme' ) }
                 @{ components = @( 'iptables' ) }
                 @{ components = @( 'rsync' ) }
-                if ( [version]$v -ge 3.15 ) {
+                if ( [version]$v -ge [version]'3.15' ) {
                     # Add yq variants for alpine:3.15 and above
                     @{ components = @( 'yq' ) }
                 }
