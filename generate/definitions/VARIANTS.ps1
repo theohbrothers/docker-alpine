@@ -20,6 +20,10 @@ $local:VARIANTS_MATRIX = @(
                 @{ components = @( 'pingme' ) }
                 @{ components = @( 'iptables' ) }
                 @{ components = @( 'rsync' ) }
+                if ( [version]$v -ge 3.15 ) {
+                    # Add yq variants for alpine:3.15 and above
+                    @{ components = @( 'yq' ) }
+                }
             )
         }
     }

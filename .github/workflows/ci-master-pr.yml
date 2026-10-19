@@ -413,6 +413,73 @@ jobs:
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-24-yq
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.24-yq"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.24-yq - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.24-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.24-yq - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.24-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.24-yq - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.24-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-24-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
     # Temp fix
     # https://github.com/docker/build-push-action/issues/252
     # https://github.com/moby/buildkit/issues/1896
@@ -797,6 +864,73 @@ jobs:
           ${{ github.repository }}:${{ steps.prep-3-20-rsync.outputs.VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-20-rsync.outputs.REF_VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-20-rsync.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-20-yq
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.20-yq"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.20-yq - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.20-yq - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.20-yq - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.20-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-20-yq.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
@@ -1187,6 +1321,73 @@ jobs:
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-17-yq
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.17-yq"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.17-yq - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.17-yq - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.17-yq - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.17-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-17-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
     # Temp fix
     # https://github.com/docker/build-push-action/issues/252
     # https://github.com/moby/buildkit/issues/1896
@@ -1571,6 +1772,73 @@ jobs:
           ${{ github.repository }}:${{ steps.prep-3-15-rsync.outputs.VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-15-rsync.outputs.REF_VARIANT }}
           ${{ github.repository }}:${{ steps.prep-3-15-rsync.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    # This step generates the docker tags
+    - name: Prepare
+      id: prep-3-15-yq
+      run: |
+        set -e
+
+        # Get ref, i.e. <branch_name> from refs/heads/<branch_name>, or <tag-name> from refs/tags/<tag_name>. E.g. 'master' or 'v0.0.0'
+        REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+
+        # Get short commit hash E.g. 'abc0123'
+        SHA=$( echo "${GITHUB_SHA}" | cut -c1-7 )
+
+        # Generate docker image tags
+        # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
+        # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
+        VARIANT="3.15-yq"
+        REF_VARIANT="${REF}-${VARIANT}"
+        REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
+
+        # Pass variables to next step
+        echo "VARIANT_BUILD_DIR=$VARIANT_BUILD_DIR" >> $GITHUB_OUTPUT
+        echo "VARIANT=$VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
+        echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
+
+    - name: 3.15-yq - Build (PRs)
+      # Run only on pull requests
+      if: github.event_name == 'pull_request'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: false
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.15-yq - Build and push (master)
+      # Run only on master
+      if: github.ref == 'refs/heads/master'
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_SHA_VARIANT }}
+        cache-from: type=local,src=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+
+    - name: 3.15-yq - Build and push (release)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: docker/build-push-action@v5
+      with:
+        context: variants/3.15-yq
+        platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
+        push: true
+        tags: |
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-3-15-yq.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 

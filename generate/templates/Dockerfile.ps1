@@ -76,7 +76,7 @@ RUN apk add --no-cache openssl
         }
 
         'rsync' {
-        @"
+            @"
 RUN apk add --no-cache rsync
 
 
@@ -84,8 +84,18 @@ RUN apk add --no-cache rsync
         }
 
         'ssh' {
-        @"
+            @"
 RUN apk add --no-cache openssh
+
+
+"@
+        }
+
+        'yq' {
+            @"
+RUN set -eux; \
+    apk add --repository=https://dl-cdn.alpinelinux.org/alpine/v3.24/community --no-cache yq-go; \
+    yq --version
 
 
 "@
