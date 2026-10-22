@@ -87,7 +87,7 @@ RUN apk add --no-cache openssl
                     'pingme'
                     'LICENSE.md'
                 )
-                architectures = $VARIANT['_metadata']['platforms']
+                platforms = $VARIANT['_metadata']['platforms']
                 testCommand = 'pingme --version'
             }
         }
